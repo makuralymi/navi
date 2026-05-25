@@ -80,6 +80,18 @@ function onToggle(e) {
   align-items: center;
 }
 
+@media (max-width: 768px) {
+  .toggleWrapper {
+    padding: 0 50px 0 42px;
+  }
+}
+
+@media (max-width: 480px) {
+  .toggleWrapper {
+    padding: 0 44px 0 36px;
+  }
+}
+
 .toggleWrapper .input {
   position: absolute;
   left: -99em;

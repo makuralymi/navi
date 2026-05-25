@@ -14,13 +14,14 @@
   position: relative;
   max-width: 1560px;
   margin: 10px auto 0;
-  padding: 0 40px;
+  padding: 0 var(--content-padding);
   width: 100%;
+  gap: 12px;
 }
 
 .sidebar-logo {
-  font-size: 2.2rem; /* 大字号 */
-  letter-spacing: 2px; /* 增加高级感 */
+  font-size: 2.2rem;
+  letter-spacing: 2px;
   font-weight: bold;
   display: flex;
   align-items: center;
@@ -39,14 +40,56 @@
   max-width: 1560px;
   width: 100%;
   margin: 0 auto;
-  padding: 0 40px;
+  padding: 0 var(--content-padding);
+  position: relative;
 }
 
 /* Sidebar */
 .app-sidebar {
   width: var(--sidebar-width);
+  flex-shrink: 0;
   background: transparent;
   padding-top: 20px;
+  transition: transform 0.35s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+/* Hamburger */
+.sidebar-toggle {
+  display: none;
+  width: 36px;
+  height: 36px;
+  border: none;
+  background: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(8px);
+  border-radius: 10px;
+  cursor: pointer;
+  flex-shrink: 0;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  z-index: 100;
+}
+
+.sidebar-toggle span {
+  display: block;
+  width: 20px;
+  height: 2px;
+  background: var(--text-color);
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+.sidebar-toggle.open span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.sidebar-toggle.open span:nth-child(2) {
+  opacity: 0;
+}
+
+.sidebar-toggle.open span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
 }
 
 /* Content Area */
@@ -54,6 +97,7 @@
   flex: 1;
   overflow-y: auto;
   padding: 20px;
+  min-width: 0;
 }
 
 /* Grid Layout for Cards */
@@ -100,6 +144,7 @@
   }
 }
 
+/* ===== Responsive ===== */
 @media (max-width: 900px) {
   .card-grid {
     --card-max: 340px;
@@ -107,11 +152,67 @@
   }
 }
 
-@media (max-width: 640px) {
+@media (max-width: 768px) {
+  .sidebar-toggle {
+    display: flex;
+  }
+
+  .app-sidebar {
+    position: fixed;
+    top: var(--header-height);
+    left: 0;
+    bottom: 0;
+    z-index: 90;
+    background: var(--panel-bg);
+    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(20px);
+    border-right: 1px solid var(--card-border);
+    box-shadow: 4px 0 24px rgba(0, 0, 0, 0.08);
+    padding: 20px 16px;
+    transform: translateX(-100%);
+  }
+
+  .app-sidebar.open {
+    transform: translateX(0);
+  }
+
+  .sidebar-backdrop {
+    display: none;
+    position: fixed;
+    inset: 0;
+    top: var(--header-height);
+    background: rgba(0, 0, 0, 0.2);
+    z-index: 89;
+  }
+
+  .sidebar-backdrop.visible {
+    display: block;
+  }
+
+  .app-content {
+    padding: 12px;
+  }
+
+  .sidebar-logo {
+    font-size: 1.6rem;
+    margin-bottom: 24px;
+  }
+
   .card-grid {
-    --card-max: 400px;
     --card-gap: 16px;
     padding: 6px;
+  }
+}
+
+@media (max-width: 480px) {
+  .card-grid {
+    --card-max: 400px;
+    --card-gap: 14px;
+    padding: 4px;
+  }
+
+  .app-content {
+    padding: 8px;
   }
 }
 
@@ -377,4 +478,16 @@ html.dark .modal-close:hover {
 
 html.dark .landing-sub {
   color: #6b7d90;
+}
+
+html.dark .sidebar-toggle {
+  background: rgba(30, 33, 40, 0.6);
+}
+
+html.dark .sidebar-toggle span {
+  background: #c8d6e5;
+}
+
+html.dark .sidebar-backdrop {
+  background: rgba(0, 0, 0, 0.5);
 }

@@ -7,7 +7,7 @@ export const siteData = [
       { title: "GitHub", description: '我的GitHub主页，欢迎star和follow。', url: 'https://github.com/makuralymi', icon: 'GitHub.svg' },
       { title: "Blog", description: '我的个人博客，记录我的技术探索和生活点滴。当前没建好！', url: 'https://blog.makuraly.xyz', icon: '📚' },
       { title: '飞行雪绒主站', description: '鸣潮同人飞行雪绒网站。', url: 'https://fleet-snowfluff.makuraly.xyz', icon: 'ams.webp' },
-      { title: '飞行雪绒聊天室', description: '飞行雪绒同人站聊天室，带有爱弥斯和漂泊者语言AI。', url: 'https://chat.fleet-snowfluff.makuraly.xyz', icon: 'ams.webp' },
+      { title: '飞行雪绒聊天室', description: '飞行雪绒同人站聊天室，带有爱弥斯和漂泊者语言AI。', url: 'https://chat.makuraly.xyz', icon: 'ams.webp' },
       { title: '达妮娅同人站', description: '好娅娅的同人站。', url: 'https://denia.makuraly.xyz', icon: 'denia.png' },
       { title: '音游Tetra flux', description: '网页端4k音乐游戏。', url: 'https://4k.makuraly.xyz', icon: 'key.png' },
       { title: "webpiano", description: '一个基于Web的特效钢琴钢琴应用，带瀑布流。', url: 'https://webpiano.makuraly.xyz', icon: '🎹' }

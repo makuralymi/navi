@@ -1,5 +1,5 @@
 <template>
-  <aside class="app-sidebar">
+  <aside class="app-sidebar" :class="{ open: visible }">
     <div class="sidebar-logo">
       🌸 <span>凉言de导航</span>
     </div>
@@ -29,7 +29,10 @@
 <script setup>
 import { siteData } from '../data/index.js'
 
-defineProps(['modelValue'])
+defineProps({
+  modelValue: Number,
+  visible: Boolean
+})
 defineEmits(['update:modelValue'])
 
 const menuItems = siteData

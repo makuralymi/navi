@@ -154,4 +154,20 @@ function switchTab(val) {
     0 0 18px rgba(186, 230, 253, 0.4),
     0 0 10px rgba(200, 240, 255, 0.6) inset;
 }
+
+@media (max-width: 768px) {
+  .glass-radio-group label {
+    min-width: 72px;
+    font-size: 12px;
+    padding: 0.6rem 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .glass-radio-group label {
+    min-width: 56px;
+    font-size: 11px;
+    padding: 0.5rem 0.8rem;
+  }
+}
 </style>

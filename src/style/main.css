@@ -10,6 +10,15 @@
   --header-height: 70px;
   --sidebar-width: 240px;
   --border-radius: 12px;
+  --content-padding: 40px;
+}
+
+@media (max-width: 768px) {
+  :root {
+    --header-height: 56px;
+    --sidebar-width: 220px;
+    --content-padding: 16px;
+  }
 }
 
 html.dark {

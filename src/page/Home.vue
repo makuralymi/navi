@@ -20,7 +20,20 @@
 
     <!-- 导航页：侧栏 + 内容 -->
     <div v-else class="app-body">
-      <Sidebar v-model="activeIndex" />
+      <button
+        class="sidebar-toggle"
+        :class="{ open: sidebarOpen }"
+        @click="sidebarOpen = !sidebarOpen"
+        aria-label="切换侧栏"
+      >
+        <span></span><span></span><span></span>
+      </button>
+      <div
+        class="sidebar-backdrop"
+        :class="{ visible: sidebarOpen }"
+        @click="sidebarOpen = false"
+      ></div>
+      <Sidebar :modelValue="activeIndex" @update:modelValue="onSidebarChange" :visible="sidebarOpen" />
       <Content :activeIndex="activeIndex" />
     </div>
 
@@ -50,6 +63,12 @@ import Content from '../components/Content.vue'
 const currentTab = ref('home')
 const currentView = ref('home')
 const activeIndex = ref(0)
+const sidebarOpen = ref(false)
+
+function onSidebarChange(index) {
+  activeIndex.value = index
+  sidebarOpen.value = false
+}
 
 const showContact = ref(false)
 const contactEmail = 'makuraly@hotmail.com'
@@ -289,5 +308,62 @@ function copyEmail() {
 @keyframes toastIn {
   from { opacity: 0; transform: translateY(4px); }
   to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 768px) {
+  .landing-content {
+    padding: 24px;
+  }
+
+  .landing-title {
+    font-size: clamp(2.2rem, 10vw, 4rem);
+    letter-spacing: 2px;
+  }
+
+  .landing-sub {
+    font-size: 1rem;
+    margin-bottom: 36px;
+    letter-spacing: 1px;
+  }
+
+  .landing-btn {
+    padding: 14px 36px;
+    font-size: 1rem;
+    letter-spacing: 1px;
+  }
+
+  .modal-card {
+    padding: 36px 28px 28px;
+    max-width: 340px;
+  }
+
+  .modal-card h2 {
+    font-size: 1.3rem;
+  }
+
+  .modal-email {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .landing-title {
+    font-size: clamp(1.8rem, 12vw, 3rem);
+  }
+
+  .landing-sub {
+    font-size: 0.9rem;
+    margin-bottom: 28px;
+  }
+
+  .landing-btn {
+    padding: 12px 28px;
+    font-size: 0.95rem;
+  }
+
+  .modal-card {
+    padding: 28px 20px 24px;
+    border-radius: 20px;
+  }
 }
 </style>
