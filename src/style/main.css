@@ -1,0 +1,99 @@
+:root {
+  --bg-color: #f5f7fa;
+  --panel-bg: rgba(255, 255, 255, 0.7);
+  --hover-bg: #fff0f3;
+  --text-color: #2c3e50;
+  --text-muted: #8b9eb0;
+  --primary-color: #f7a8b8;
+  --card-bg: rgba(255, 255, 255, 0.55);
+  --card-border: rgba(255, 255, 255, 0.85);
+  --header-height: 70px;
+  --sidebar-width: 240px;
+  --border-radius: 12px;
+}
+
+html.dark {
+  --bg-color: #1a1d23;
+  --panel-bg: rgba(30, 33, 40, 0.7);
+  --hover-bg: #2d2030;
+  --text-color: #c8d6e5;
+  --text-muted: #6b7d90;
+  --primary-color: #e8879e;
+  --card-bg: rgba(30, 33, 40, 0.7);
+  --card-border: rgba(255, 255, 255, 0.08);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  line-height: 1.5;
+  min-height: 100vh;
+  transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul, li {
+  list-style: none;
+}
+
+/* 滚动条美化 */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-thumb {
+  background-color: #444;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background-color: #555;
+}
+::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+/* ===== View Transition API — 昼夜切换径向展开 ===== */
+::view-transition-old(root) {
+  animation: vt-old-fade 0.45s ease forwards;
+}
+
+::view-transition-new(root) {
+  clip-path: circle(0 at var(--vt-x, 50%) var(--vt-y, 50%));
+  animation: vt-new-reveal 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes vt-old-fade {
+  to { opacity: 0.35; }
+}
+
+@keyframes vt-new-reveal {
+  to { clip-path: circle(150vmax at var(--vt-x, 50%) var(--vt-y, 50%)); }
+}
+
+/* ===== 暗色模式 ===== */
+html.dark .blob {
+  opacity: 0.35;
+}
+
+html.dark .blob-1 {
+  background: radial-gradient(circle, #8b4a5a, #5a3040);
+}
+
+html.dark .blob-2 {
+  background: radial-gradient(circle, #3a5a8c, #2a4060);
+}
+
+html.dark .blob-3 {
+  background: radial-gradient(circle, #5a3a7a, #352550);
+}
