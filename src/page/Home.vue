@@ -65,6 +65,7 @@
           
           <div class="settings-group">
             <h3>个性化主题</h3>
+            
             <div class="setting-item">
               <span class="setting-label">导航卡片配色</span>
               <div class="theme-color-picker">
@@ -81,6 +82,44 @@
                 </button>
               </div>
             </div>
+
+            <div class="setting-item">
+              <span class="setting-label">光雾背景配色</span>
+              <div class="theme-color-picker">
+                <button
+                  v-for="bg in bgThemes"
+                  :key="bg.value"
+                  class="color-btn"
+                  :class="{ active: settings.bgTheme === bg.value }"
+                  :style="{ background: bg.gradient }"
+                  :title="bg.label"
+                  @click="settings.bgTheme = bg.value; settings.bgImageUrl = ''"
+                >
+                  <span v-if="settings.bgTheme === bg.value && !settings.bgImageUrl" class="check-icon">✓</span>
+                </button>
+              </div>
+            </div>
+
+            <div class="setting-item" style="flex-direction: column; align-items: flex-start;">
+              <span class="setting-label" style="margin-bottom: 8px;">自定义背景图 (URL或本地文件)</span>
+              <div class="bg-image-input-group">
+                <input 
+                  type="text" 
+                  v-model="bgImageUrlInput" 
+                  placeholder="输入图片URL..." 
+                  class="bg-url-input"
+                />
+                <button class="bg-apply-btn" @click="applyBgImage">应用</button>
+                
+                <label class="bg-file-btn">
+                  选择本地文件
+                  <input type="file" accept="image/*" @change="onBgFileChange" style="display: none;" />
+                </label>
+                
+                <button v-if="settings.bgImageUrl" class="bg-clear-btn" @click="clearBgImage">清除</button>
+              </div>
+            </div>
+
           </div>
 
           <p class="modal-desc" style="margin-top:20px;font-size:12px;">更多设置项即将上线，所有配置均自动保存在本地</p>
@@ -132,6 +171,39 @@ const themeColors = [
   { value: 'green', label: '薄荷绿', gradient: 'linear-gradient(135deg, #80ed99, #b7e4c7)' },
   { value: 'orange', label: '落日橘', gradient: 'linear-gradient(135deg, #ffb703, #ffd6a5)' }
 ]
+
+const bgThemes = [
+  { value: 'default', label: '默认梦幻粉', gradient: 'radial-gradient(circle, #ffb6c1 0%, #a0c4ff 100%)' },
+  { value: 'ocean', label: '深海幽蓝', gradient: 'radial-gradient(circle, #0077b6 0%, #48cae4 100%)' },
+  { value: 'forest', label: '森林迷雾', gradient: 'radial-gradient(circle, #2d6a4f 0%, #52b788 100%)' },
+  { value: 'sunset', label: '夕阳余晖', gradient: 'radial-gradient(circle, #e85d04 0%, #ffba08 100%)' }
+]
+
+const bgImageUrlInput = ref(settings.bgImageUrl)
+
+function applyBgImage() {
+  if (bgImageUrlInput.value.trim()) {
+    settings.bgImageUrl = bgImageUrlInput.value.trim()
+  }
+}
+
+function clearBgImage() {
+  settings.bgImageUrl = ''
+  bgImageUrlInput.value = ''
+}
+
+function onBgFileChange(e) {
+  const file = e.target.files[0]
+  if (!file) return
+  
+  const reader = new FileReader()
+  reader.onload = (event) => {
+    const base64 = event.target.result
+    settings.bgImageUrl = base64
+    bgImageUrlInput.value = base64
+  }
+  reader.readAsDataURL(file)
+}
 
 const currentTab = ref('home')
 const currentView = ref('home')

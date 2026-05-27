@@ -1,5 +1,6 @@
 <template>
-  <div class="bg-blobs">
+  <div class="custom-bg-image" v-if="settings.bgImageUrl" :style="{ backgroundImage: `url(${settings.bgImageUrl})` }"></div>
+  <div class="bg-blobs" v-else>
     <div class="blob blob-1"></div>
     <div class="blob blob-2"></div>
     <div class="blob blob-3"></div>
@@ -9,6 +10,7 @@
 
 <script setup>
 import Home from './page/Home.vue'
+import { settings } from './data/settings.js'
 </script>
 
 <style scoped>
@@ -36,7 +38,7 @@ import Home from './page/Home.vue'
   left: -10%;
   width: 50vw;
   height: 50vw;
-  background: radial-gradient(circle, #ffb6c1 0%, #ffc0cb 100%);
+  background: radial-gradient(circle, var(--blob1-start) 0%, var(--blob1-end) 100%);
   animation-duration: 14s;
 }
 
@@ -45,7 +47,7 @@ import Home from './page/Home.vue'
   right: -10%;
   width: 60vw;
   height: 60vw;
-  background: radial-gradient(circle, #a0c4ff 0%, #90e0ef 100%);
+  background: radial-gradient(circle, var(--blob2-start) 0%, var(--blob2-end) 100%);
   animation-duration: 18s;
   animation-delay: -3s;
 }
@@ -55,9 +57,22 @@ import Home from './page/Home.vue'
   left: 40%;
   width: 40vw;
   height: 40vw;
-  background: radial-gradient(circle, #e0c3fc 0%, #c5a3ff 100%);
+  background: radial-gradient(circle, var(--blob3-start) 0%, var(--blob3-end) 100%);
   animation-duration: 15s;
   animation-delay: -7s;
+}
+
+.custom-bg-image {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -2;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  pointer-events: none;
 }
 
 @keyframes float {

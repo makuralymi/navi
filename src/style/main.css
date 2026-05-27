@@ -277,3 +277,40 @@ html.dark .blob-2 {
 html.dark .blob-3 {
   background: radial-gradient(circle, #5a3a7a, #352550);
 }
+
+/* Background blob themes */
+:root {
+  --blob1-start: #ffb6c1;
+  --blob1-end: #ffc0cb;
+  --blob2-start: #a0c4ff;
+  --blob2-end: #90e0ef;
+  --blob3-start: #e0c3fc;
+  --blob3-end: #c5a3ff;
+}
+
+[data-bg-theme="ocean"] {
+  --blob1-start: #0077b6;
+  --blob1-end: #00b4d8;
+  --blob2-start: #48cae4;
+  --blob2-end: #90e0ef;
+  --blob3-start: #03045e;
+  --blob3-end: #0077b6;
+}
+
+[data-bg-theme="forest"] {
+  --blob1-start: #2d6a4f;
+  --blob1-end: #40916c;
+  --blob2-start: #52b788;
+  --blob2-end: #74c69d;
+  --blob3-start: #1b4332;
+  --blob3-end: #2d6a4f;
+}
+
+[data-bg-theme="sunset"] {
+  --blob1-start: #e85d04;
+  --blob1-end: #f48c06;
+  --blob2-start: #dc2f02;
+  --blob2-end: #e85d04;
+  --blob3-start: #ffba08;
+  --blob3-end: #faa307;
+}
