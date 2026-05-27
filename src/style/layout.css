@@ -644,3 +644,93 @@ html.dark .settings-group {
 html.dark .bg-url-input {
   border-color: rgba(255, 255, 255, 0.15);
 }
+
+/* Custom Color Picker */
+.color-picker-wrapper {
+  position: relative;
+  overflow: hidden;
+}
+
+.hidden-color-input {
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  width: 200%;
+  height: 200%;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.settings-modal {
+  width: 95% !important;
+  max-width: 600px !important;
+  padding: 40px 36px 36px !important;
+}
+
+.settings-modal h2 {
+  font-size: 1.6rem !important;
+}
+
+.settings-group {
+  margin-top: 24px;
+}
+
+/* Range Sliders */
+.bg-image-sliders {
+  width: 100%;
+  margin-top: 16px;
+  background: var(--card-bg);
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid rgba(180, 190, 205, 0.3);
+}
+
+.slider-item {
+  width: 100%;
+  margin-bottom: 12px;
+}
+
+.slider-item:last-child {
+  margin-bottom: 0;
+}
+
+.slider-header {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  color: var(--text-color);
+  margin-bottom: 6px;
+}
+
+.range-slider {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 6px;
+  background: rgba(180, 190, 205, 0.4);
+  border-radius: 4px;
+  outline: none;
+}
+
+.range-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--primary-color);
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.range-slider::-webkit-slider-thumb:hover {
+  transform: scale(1.15);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+html.dark .bg-image-sliders {
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+html.dark .range-slider {
+  background: rgba(255, 255, 255, 0.15);
+}

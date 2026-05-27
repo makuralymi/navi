@@ -80,6 +80,9 @@
                 >
                   <span v-if="settings.navCardTheme === color.value" class="check-icon">✓</span>
                 </button>
+                <div class="color-picker-wrapper color-btn" :class="{ active: settings.navCardTheme.startsWith('#') }" title="自定义颜色" :style="{ background: settings.navCardTheme.startsWith('#') ? settings.navCardTheme : 'conic-gradient(red, yellow, lime, aqua, blue, magenta, red)' }">
+                  <input type="color" class="hidden-color-input" :value="settings.navCardTheme.startsWith('#') ? settings.navCardTheme : '#ff69b4'" @input="settings.navCardTheme = $event.target.value" />
+                </div>
               </div>
             </div>
 
@@ -97,6 +100,9 @@
                 >
                   <span v-if="settings.bgTheme === bg.value && !settings.bgImageUrl" class="check-icon">✓</span>
                 </button>
+                <div class="color-picker-wrapper color-btn" :class="{ active: settings.bgTheme.startsWith('#') }" title="自定义颜色" :style="{ background: settings.bgTheme.startsWith('#') ? settings.bgTheme : 'conic-gradient(red, yellow, lime, aqua, blue, magenta, red)' }">
+                  <input type="color" class="hidden-color-input" :value="settings.bgTheme.startsWith('#') ? settings.bgTheme : '#80ed99'" @input="settings.bgTheme = $event.target.value; settings.bgImageUrl = ''" />
+                </div>
               </div>
             </div>
 
@@ -117,6 +123,23 @@
                 </label>
                 
                 <button v-if="settings.bgImageUrl" class="bg-clear-btn" @click="clearBgImage">清除</button>
+              </div>
+
+              <div class="bg-image-sliders" v-if="settings.bgImageUrl">
+                <div class="slider-item">
+                  <div class="slider-header">
+                    <span>透明度</span>
+                    <span>{{ settings.bgImageOpacity }}%</span>
+                  </div>
+                  <input type="range" min="0" max="100" v-model="settings.bgImageOpacity" class="range-slider" />
+                </div>
+                <div class="slider-item">
+                  <div class="slider-header">
+                    <span>模糊度</span>
+                    <span>{{ settings.bgImageBlur }}px</span>
+                  </div>
+                  <input type="range" min="0" max="20" v-model="settings.bgImageBlur" class="range-slider" />
+                </div>
               </div>
             </div>
 
@@ -169,14 +192,18 @@ const themeColors = [
   { value: 'blue', label: '海天蓝', gradient: 'linear-gradient(135deg, #90e0ef, #caf0f8)' },
   { value: 'purple', label: '罗兰紫', gradient: 'linear-gradient(135deg, #c5a3ff, #e0c3fc)' },
   { value: 'green', label: '薄荷绿', gradient: 'linear-gradient(135deg, #80ed99, #b7e4c7)' },
-  { value: 'orange', label: '落日橘', gradient: 'linear-gradient(135deg, #ffb703, #ffd6a5)' }
+  { value: 'orange', label: '落日橘', gradient: 'linear-gradient(135deg, #ffb703, #ffd6a5)' },
+  { value: 'teal', label: '青黛', gradient: 'linear-gradient(135deg, #2a9d8f, #84a98c)' },
+  { value: 'crimson', label: '绛红', gradient: 'linear-gradient(135deg, #e63946, #e56b6f)' }
 ]
 
 const bgThemes = [
   { value: 'default', label: '默认梦幻粉', gradient: 'radial-gradient(circle, #ffb6c1 0%, #a0c4ff 100%)' },
   { value: 'ocean', label: '深海幽蓝', gradient: 'radial-gradient(circle, #0077b6 0%, #48cae4 100%)' },
   { value: 'forest', label: '森林迷雾', gradient: 'radial-gradient(circle, #2d6a4f 0%, #52b788 100%)' },
-  { value: 'sunset', label: '夕阳余晖', gradient: 'radial-gradient(circle, #e85d04 0%, #ffba08 100%)' }
+  { value: 'sunset', label: '夕阳余晖', gradient: 'radial-gradient(circle, #e85d04 0%, #ffba08 100%)' },
+  { value: 'purpleNight', label: '紫夜星光', gradient: 'radial-gradient(circle, #9d4edd 0%, #c8b6ff 100%)' },
+  { value: 'golden', label: '晨曦金光', gradient: 'radial-gradient(circle, #ffd166 0%, #f4a261 100%)' }
 ]
 
 const bgImageUrlInput = ref(settings.bgImageUrl)
@@ -198,9 +225,45 @@ function onBgFileChange(e) {
   
   const reader = new FileReader()
   reader.onload = (event) => {
-    const base64 = event.target.result
-    settings.bgImageUrl = base64
-    bgImageUrlInput.value = base64
+    const img = new Image()
+    img.onload = () => {
+      const canvas = document.createElement('canvas')
+      let width = img.width
+      let height = img.height
+      
+      // Scale down if image is too large
+      const MAX_WIDTH = 1920
+      const MAX_HEIGHT = 1080
+      
+      if (width > height) {
+        if (width > MAX_WIDTH) {
+          height *= MAX_WIDTH / width
+          width = MAX_WIDTH
+        }
+      } else {
+        if (height > MAX_HEIGHT) {
+          width *= MAX_HEIGHT / height
+          height = MAX_HEIGHT
+        }
+      }
+      
+      canvas.width = width
+      canvas.height = height
+      
+      const ctx = canvas.getContext('2d')
+      ctx.drawImage(img, 0, 0, width, height)
+      
+      // Compress to webp or jpeg
+      const compressedDataUrl = canvas.toDataURL('image/webp', 0.8)
+      
+      try {
+        settings.bgImageUrl = compressedDataUrl
+        bgImageUrlInput.value = compressedDataUrl
+      } catch(err) {
+        alert('图片仍然过大，无法保存到本地，请尝试裁剪图片后重试！')
+      }
+    }
+    img.src = event.target.result
   }
   reader.readAsDataURL(file)
 }
@@ -319,11 +382,11 @@ function closeAnnounce() {
   font-weight: 600;
   letter-spacing: 2px;
   color: #fff;
-  background: linear-gradient(135deg, #f7a8b8, #e8879e);
+  background: linear-gradient(135deg, var(--nav-primary), var(--nav-secondary));
   border: none;
   border-radius: 50px;
   cursor: pointer;
-  box-shadow: 0 8px 30px rgba(247, 168, 184, 0.35);
+  box-shadow: 0 8px 30px var(--nav-hover-shadow);
   transition:
     transform 0.35s cubic-bezier(0.22, 0.61, 0.36, 1),
     box-shadow 0.35s ease;
@@ -331,7 +394,7 @@ function closeAnnounce() {
 
 .landing-btn:hover {
   transform: translateY(-3px);
-  box-shadow: 0 14px 40px rgba(247, 168, 184, 0.5);
+  box-shadow: 0 14px 40px var(--nav-hover-border);
 }
 
 .landing-btn:active {

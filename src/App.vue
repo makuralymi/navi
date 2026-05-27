@@ -1,5 +1,5 @@
 <template>
-  <div class="custom-bg-image" v-if="settings.bgImageUrl" :style="{ backgroundImage: `url(${settings.bgImageUrl})` }"></div>
+  <div class="custom-bg-image" v-if="settings.bgImageUrl" :style="{ backgroundImage: `url(${settings.bgImageUrl})`, opacity: settings.bgImageOpacity / 100, filter: `blur(${settings.bgImageBlur}px)` }"></div>
   <div class="bg-blobs" v-else>
     <div class="blob blob-1"></div>
     <div class="blob blob-2"></div>
