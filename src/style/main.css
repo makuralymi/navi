@@ -178,9 +178,11 @@ ul, li {
 }
 
 /* Firefox 滚动条 */
-* {
-  scrollbar-width: thin;
-  scrollbar-color: rgba(210, 220, 240, 0.55) rgba(220, 230, 245, 0.15);
+@supports (scrollbar-width: thin) {
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(210, 220, 240, 0.55) rgba(220, 230, 245, 0.15);
+  }
 }
 
 /* ===== 暗色模式玻璃棒滚动条 ===== */
@@ -239,8 +241,10 @@ html.dark ::-webkit-scrollbar-thumb:active {
   );
 }
 
-html.dark * {
-  scrollbar-color: rgba(180, 195, 215, 0.22) rgba(40, 48, 58, 0.2);
+@supports (scrollbar-color: auto) {
+  html.dark * {
+    scrollbar-color: rgba(180, 195, 215, 0.22) rgba(40, 48, 58, 0.2);
+  }
 }
 
 /* ===== View Transition API — 昼夜切换径向展开 ===== */
