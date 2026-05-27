@@ -8,7 +8,8 @@ const defaultSettings = { // Default settings
   bgCustomColors: ['#ff8fa3', '#a2d2ff', '#b98eff'], // custom colors for 3 blobs
   bgImageUrl: '',       // custom background image URL or base64
   bgImageOpacity: 100,  // background image opacity 0-100
-  bgImageBlur: 0        // background image blur radius in px
+  bgImageBlur: 0,       // background image blur radius in px
+  showWave: true        // show wave animation at footer
 }
 
 function loadSettings() {

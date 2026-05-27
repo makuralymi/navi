@@ -5,6 +5,16 @@
     <div class="blob blob-2"></div>
     <div class="blob blob-3"></div>
   </div>
+  <div class="wave-footer" v-if="settings.showWave">
+    <svg class="wave-svg" viewBox="0 0 1200 120" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <path id="wave-path" d="M0,60 C150,105 350,15 500,60 C650,105 850,15 1000,60 C1150,105 1350,15 1500,60 C1650,105 1850,15 2000,60 L2000,120 L0,120 Z" />
+      </defs>
+      <use href="#wave-path" class="wave-layer wave-layer-3" />
+      <use href="#wave-path" class="wave-layer wave-layer-2" />
+      <use href="#wave-path" class="wave-layer wave-layer-1" />
+    </svg>
+  </div>
   <Home />
 </template>
 

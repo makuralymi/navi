@@ -151,6 +151,14 @@
               </div>
             </div>
 
+            <div class="setting-item">
+              <span class="setting-label">底部波形动画</span>
+              <label class="toggle-switch">
+                <input type="checkbox" v-model="settings.showWave" />
+                <span class="toggle-track"></span>
+              </label>
+            </div>
+
           </div>
 
           <p class="modal-desc" style="margin-top:20px;font-size:12px;">更多设置项即将上线，所有配置均自动保存在本地</p>
