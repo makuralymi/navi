@@ -47,7 +47,7 @@ const props = defineProps({
   tab: { type: String, default: 'home' }
 })
 
-const emit = defineEmits(['navigate', 'contact'])
+const emit = defineEmits(['navigate', 'contact', 'announce'])
 
 const activeTab = ref(props.tab)
 
@@ -59,6 +59,8 @@ function switchTab(val) {
   activeTab.value = val
   if (val === 'contact') {
     emit('contact')
+  } else if (val === 'announce') {
+    emit('announce')
   } else {
     emit('navigate', val)
   }

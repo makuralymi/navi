@@ -15,7 +15,7 @@ export const siteData = [
   },
 
   {
-    name: 'AI工具库',
+    name: 'AI供应商&平台',
     icon: '🤖',
     sites: [
       // ===== 国际主流 =====
@@ -39,7 +39,24 @@ export const siteData = [
       { title: '腾讯元宝', description: '腾讯出品，基于混元大模型，深度整合微信/QQ生态。', url: 'https://yuanbao.tencent.com', icon: '腾讯元宝.svg' },
       { title: '讯飞星火', description: '科大讯飞出品，语音识别与多模态能力突出，教育场景强。', url: 'https://xinghuo.xfyun.cn', icon: '讯飞星火.svg' },
       { title: '秘塔AI', description: '国产AI搜索引擎，无广告直达答案，学术搜索能力强。', url: 'https://metaso.cn', icon: '秘塔AI.svg' },
+      { title: "Dify", description: '一站式AI工具平台，提供多种实用AI应用。', url: 'https://www.dify.ai', icon: 'Dify' },
       { title: '天工AI', description: '昆仑万维出品，支持搜索/聊天/创作等多场景。', url: 'https://www.tiangong.cn', icon: '天工.svg' }
+    ]
+  },
+
+  {
+    name: 'AI工具',
+    icon: '🛠️',
+    sites: [
+      { title: 'GPT-SoVITS', description: '强大的少样本语音转换与语音合成 WebUI 工具，仅需 5 秒语音样本即可体验高相似度的声音克隆。', url: 'https://github.com/RVC-Boss/GPT-SoVITS', icon: 'GitHub.svg' },
+      { title: 'Ollama', description: '轻量级、可扩展的本地大模型运行框架，支持在本地一键配置、运行和管理 Llama 3、Qwen 2.5 等开源模型。', url: 'https://github.com/ollama/ollama', icon: 'GitHub.svg' },
+      { title: 'Stable Diffusion WebUI', description: '基于 Gradio 库的 Stable Diffusion 浏览器界面，拥有极其丰富的开源插件生态，是目前最主流的 AI 绘画工具之一。', url: 'https://github.com/AUTOMATIC1111/stable-diffusion-webui', icon: 'GitHub.svg' },
+      { title: 'ComfyUI', description: '基于节点流程图的 Stable Diffusion 生成界面，支持极其精确的流水线定制，内存占用低且适合高级玩家搞工作流。', url: 'https://github.com/comfyanonymous/ComfyUI', icon: 'GitHub.svg' },
+      { title: 'NextChat', description: '一键拥有你自己的跨平台 ChatGPT/Gemini 精美 Web 界面，支持客户端下载与自建部署。', url: 'https://github.com/ChatGPTNextWeb/ChatGPT-Next-Web', icon: 'GitHub.svg' },
+      { title: 'Lobe Chat', description: '现代化的高性能开源 AI 会话应用，支持语音合成、多模态、插件系统，拥有极佳的视觉与交互设计。', url: 'https://github.com/lobehub/lobe-chat', icon: 'GitHub.svg' },
+      { title: 'Open-WebUI', description: '功能丰富的全管道自托管 Web 界面，完美适配 Ollama，支持完全离线运行、RAG（检索增强生成）和多用户管理。', url: 'https://github.com/open-webui/open-webui', icon: 'GitHub.svg' },
+      { title: 'vLLM', description: '高速、易用的 LLM 推理与服务引擎，拥有极高的吞吐量和高效的 PagedAttention 显存管理技术，适合后端开发部署。', url: 'https://github.com/vllm-project/vllm', icon: 'GitHub.svg' },
+      { title: 'ComfyUI-3D-Pack', description: '将 3D 生成能力（如三维重建、高斯泼溅 GS）整合进 ComfyUI 的开源工作流扩展。', url: 'https://github.com/MrForExample/ComfyUI-3D-Pack', icon: 'GitHub.svg' }
     ]
   },
 
@@ -97,7 +114,11 @@ export const siteData = [
       { title: 'NicoNico', description: '日本知名视频分享平台，ACGN相关内容丰富。', url: 'https://www.nicovideo.jp', icon: 'https://www.nicovideo.jp/favicon.ico' },
       { title: 'MyAnimeList', description: '全球最大的动漫数据库和社区，提供评分、评论等功能。', url: 'https://myanimelist.net', icon: 'https://myanimelist.net/favicon.ico' },
       { title: "轻之国度", description: '轻小说爱好者的社区，提供小说发布、讨论等功能。', url: 'https://www.lightnovel.cn', icon: 'https://www.lightnovel.cn/favicon.ico' },
-      { title: 'Anime-Planet', description: '提供动漫推荐、评分和社区交流的平台。', url: 'https://www.anime-planet.com', icon: 'https://www.anime-planet.com/favicon.ico' }
+      { title: 'Anime-Planet', description: '提供动漫推荐、评分和社区交流的平台。', url: 'https://www.anime-planet.com', icon: 'https://www.anime-planet.com/favicon.ico' },
+      { title: '哔哩哔哩漫画', description: 'B站旗下的漫画平台，提供丰富的正版漫画资源。', url: 'https://manga.bilibili.com', icon: 'https://manga.bilibili.com/favicon.ico' },
+      { title: 'Comico', description: '提供多种语言的在线漫画平台，内容丰富多样。', url: 'https://www.comico.com', icon: 'https://www.comico.com/favicon.ico' },
+      { title: 'Tapas', description: '提供漫画和小说的在线平台，支持创作者发布作品。', url: 'https://tapas.io', icon: 'https://tapas.io/favicon.ico' },
+      { title: "KAZUMI", description: "全平台的使用 Flutter 开发的基于自定义规则的番剧采集与在线观看程序。绝赞开发中 (～￣▽￣)～", url: 'https://kazumi.app/', icon: 'https://kazumi.app/favicon.ico' }
     ]
   },
 
@@ -109,12 +130,12 @@ export const siteData = [
       { title: 'Epic Games', description: '知名游戏发行商，定期举办免费游戏活动。', url: 'https://www.epicgames.com', icon: 'https://www.epicgames.com/favicon.ico' },
       { title: "老区长", description: '提供各种游戏资源。', url: 'https://www.gamer520.com/', icon: 'https://www.gamer520.com/favicon.ico' },
       { title: 'GOG', description: '提供无DRM的经典和独立游戏。', url: 'https://www.gog.com', icon: 'https://www.gog.com/favicon.ico' },
-      { title: 'Origin', description: 'EA旗下的数字游戏发行平台。', url: 'https://www.origin.com', icon: 'https://www.origin.com/favicon.ico' },
+      { title: 'Origin', description: 'EA旗下的数字游戏发行平台。', url: 'https://www.origin.com', icon: 'https://media.contentapi.ea.com/content/dam/eacom/common/ea-play-logo-pc-download-page.svg' },
       { title: 'Uplay', description: '育碧旗下的数字游戏发行平台。', url: 'https://store.ubi.com', icon: 'https://store.ubi.com/favicon.ico' },
       { title: 'Itch.io', description: '独立游戏开发者的天堂，提供各种创意游戏。', url: 'https://itch.io', icon: 'https://itch.io/favicon.ico' },
-      { title: 'Xbox Game Pass', description: '微软的游戏订阅服务，提供大量游戏库。', url: 'https://www.xbox.com/en-US/xbox-game-pass', icon: 'https://www.xbox.com/en-US/xbox-game-pass/favicon.ico' },
-      { title: 'PlayStation Now', description: '索尼的游戏订阅服务，提供大量PS游戏库。', url: 'https://www.playstation.com/en-us/ps-now/', icon: 'https://www.playstation.com/en-us/ps-now/favicon.ico' },
-      { title: 'Nintendo Switch Online', description: '任天堂的在线服务，提供经典游戏库和在线多人功能。', url: 'https://www.nintendo.com/switch/online-service/', icon: 'https://www.nintendo.com/switch/online-service/favicon.ico' },
+      { title: 'Xbox Game Pass', description: '微软的游戏订阅服务，提供大量游戏库。', url: 'https://www.xbox.com/en-US/xbox-game-pass', icon: 'https://uhf.microsoft.com/images/xbox/RW8TP2.png' },
+      { title: 'PlayStation Now', description: '索尼的游戏订阅服务，提供大量PS游戏库。', url: 'https://www.playstation.com/en-us/ps-now/', icon: 'https://blog.playstation.com/tachyon/2019/03/pslogo.png' },
+      { title: 'Nintendo Switch Online', description: '任天堂的在线服务，提供经典游戏库和在线多人功能。', url: 'https://www.nintendo.com/switch/online-service/', icon: 'NS' },
       { title: 'Twitch', description: '全球最大的游戏直播平台。', url: 'https://www.twitch.tv', icon: 'https://www.twitch.tv/favicon.ico' },
       { title: 'YouTube Gaming', description: 'YouTube的游戏直播和视频内容专区。', url: 'https://gaming.youtube.com', icon: 'https://gaming.youtube.com/favicon.ico' },
       { title: 'GameSpot', description: '知名游戏媒体，提供游戏新闻、评测和攻略。', url: 'https://www.gamespot.com', icon: 'https://www.gamespot.com/favicon.ico' }

@@ -491,3 +491,34 @@ html.dark .sidebar-toggle span {
 html.dark .sidebar-backdrop {
   background: rgba(0, 0, 0, 0.5);
 }
+
+html.dark .announce-item {
+  background: rgba(255, 255, 255, 0.03);
+  border-color: rgba(255, 255, 255, 0.06);
+}
+
+html.dark .announce-item:hover {
+  background: rgba(247, 168, 184, 0.06);
+  border-color: rgba(247, 168, 184, 0.15);
+}
+
+html.dark .announce-title {
+  color: #c8d6e5;
+}
+
+html.dark .announce-content {
+  color: #6b7d90;
+}
+
+html.dark .announce-date {
+  color: #5a6b7a;
+}
+
+html.dark .announce-tag {
+  background: linear-gradient(135deg, rgba(247, 168, 184, 0.15), rgba(186, 230, 253, 0.15));
+  color: #b98eff;
+}
+
+html.dark .announce-list::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.12);
+}

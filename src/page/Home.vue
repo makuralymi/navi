@@ -4,6 +4,7 @@
       :tab="currentTab"
       @navigate="onNavigate"
       @contact="onContact"
+      @announce="onAnnounce"
     />
 
     <!-- 首页：大标题 + 进入按钮 -->
@@ -51,6 +52,33 @@
         </div>
       </div>
     </Teleport>
+
+    <!-- 公告弹窗 -->
+    <Teleport to="body">
+      <div v-if="showAnnounce" class="modal-overlay" @click.self="closeAnnounce">
+        <div class="modal-card announce-modal">
+          <button class="modal-close" @click="closeAnnounce">×</button>
+          <div class="modal-icon">📢</div>
+          <h2>公告</h2>
+          <div class="announce-list">
+            <div
+              v-for="(item, index) in announcements"
+              :key="index"
+              class="announce-item"
+            >
+              <div class="announce-head">
+                <h3 class="announce-title">{{ item.title }}</h3>
+                <span class="announce-date">{{ item.date }}</span>
+              </div>
+              <p class="announce-content">{{ item.content }}</p>
+              <div class="announce-tags">
+                <span v-for="tag in item.tags" :key="tag" class="announce-tag">{{ tag }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </Teleport>
   </div>
 </template>
 
@@ -59,6 +87,7 @@ import { ref } from 'vue'
 import Header from '../components/Header.vue'
 import Sidebar from '../components/Sidebar.vue'
 import Content from '../components/Content.vue'
+import { announcements } from '../data/announcements.js'
 
 const currentTab = ref('home')
 const currentView = ref('home')
@@ -95,6 +124,18 @@ function copyEmail() {
     copied.value = true
     setTimeout(() => { copied.value = false }, 2000)
   })
+}
+
+const showAnnounce = ref(false)
+
+function onAnnounce() {
+  currentTab.value = 'announce'
+  showAnnounce.value = true
+}
+
+function closeAnnounce() {
+  showAnnounce.value = false
+  currentTab.value = currentView.value === 'home' ? 'home' : 'announce'
 }
 </script>
 
@@ -310,6 +351,93 @@ function copyEmail() {
   to { opacity: 1; transform: translateY(0); }
 }
 
+/* ===== 公告弹窗 ===== */
+.announce-modal {
+  max-width: 520px;
+  max-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  padding: 48px 44px 28px;
+}
+
+.announce-list {
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding-right: 4px;
+}
+
+.announce-list::-webkit-scrollbar {
+  width: 4px;
+}
+
+.announce-list::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.12);
+  border-radius: 4px;
+}
+
+.announce-item {
+  text-align: left;
+  padding: 18px 20px;
+  background: rgba(0, 0, 0, 0.02);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: 14px;
+  transition: all 0.25s ease;
+}
+
+.announce-item:hover {
+  background: rgba(247, 168, 184, 0.04);
+  border-color: rgba(247, 168, 184, 0.2);
+}
+
+.announce-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.announce-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #2c3e50;
+  margin: 0;
+  flex: 1;
+  min-width: 0;
+}
+
+.announce-date {
+  font-size: 0.8rem;
+  color: #a0aec0;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.announce-content {
+  font-size: 0.9rem;
+  color: #6b7d90;
+  line-height: 1.7;
+  margin: 0 0 12px;
+}
+
+.announce-tags {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.announce-tag {
+  font-size: 0.75rem;
+  padding: 3px 10px;
+  border-radius: 20px;
+  background: linear-gradient(135deg, rgba(247, 168, 184, 0.12), rgba(186, 230, 253, 0.12));
+  color: #7d4cd1;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+}
+
 @media (max-width: 768px) {
   .landing-content {
     padding: 24px;
@@ -344,6 +472,14 @@ function copyEmail() {
   .modal-email {
     font-size: 1rem;
   }
+
+  .announce-modal {
+    padding: 36px 24px 24px;
+  }
+
+  .announce-item {
+    padding: 14px 16px;
+  }
 }
 
 @media (max-width: 480px) {
@@ -364,6 +500,23 @@ function copyEmail() {
   .modal-card {
     padding: 28px 20px 24px;
     border-radius: 20px;
+  }
+
+  .announce-modal {
+    padding: 28px 18px 20px;
+    max-height: 85vh;
+  }
+
+  .announce-item {
+    padding: 12px 14px;
+  }
+
+  .announce-title {
+    font-size: 0.95rem;
+  }
+
+  .announce-content {
+    font-size: 0.82rem;
   }
 }
 </style>
