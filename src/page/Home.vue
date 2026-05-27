@@ -6,6 +6,7 @@
       @contact="onContact"
       @announce="onAnnounce"
       @search="onSearch"
+      @settings="onSettings"
     />
 
     <!-- 首页：大标题 + 进入按钮 -->
@@ -50,6 +51,18 @@
           <a :href="'mailto:' + contactEmail" class="modal-email">{{ contactEmail }}</a>
           <button class="modal-copy" @click="copyEmail">复制邮箱地址</button>
           <span v-if="copied" class="modal-toast">已复制到剪贴板</span>
+        </div>
+      </div>
+    </Teleport>
+
+    <!-- 设置弹窗 -->
+    <Teleport to="body">
+      <div v-if="showSettings" class="modal-overlay" @click.self="closeSettings">
+        <div class="modal-card">
+          <button class="modal-close" @click="closeSettings">×</button>
+          <div class="modal-icon">⚙️</div>
+          <h2>设置</h2>
+          <p class="modal-desc">更多设置项即将上线...</p>
         </div>
       </div>
     </Teleport>
@@ -131,6 +144,16 @@ const searchQuery = ref('')
 
 function onSearch(q) {
   searchQuery.value = q
+}
+
+const showSettings = ref(false)
+
+function onSettings() {
+  showSettings.value = true
+}
+
+function closeSettings() {
+  showSettings.value = false
 }
 
 const showAnnounce = ref(false)

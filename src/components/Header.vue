@@ -4,56 +4,66 @@
       <ThemeToggle />
     </div>
     <div class="header-center">
-      <div class="form-control">
-        <input
-          type="text"
-          id="nav-search"
-          v-model="query"
-          @input="onSearch"
-          :class="{ filled: query.length > 0 }"
-          autocomplete="off"
-        />
-        <label for="nav-search">
-          <span
-            v-for="(char, i) in labelChars"
-            :key="i"
-            :style="{ transitionDelay: i * 50 + 'ms' }"
-          >{{ char }}</span>
-        </label>
+      <div class="search-glass">
+        <div class="form-control">
+          <input
+            type="text"
+            id="nav-search"
+            v-model="query"
+            @input="onSearch"
+            :class="{ filled: query.length > 0 }"
+            autocomplete="off"
+          />
+          <label for="nav-search">
+            <span
+              v-for="(char, i) in labelChars"
+              :key="i"
+              :style="{ transitionDelay: i * 50 + 'ms' }"
+            >{{ char }}</span>
+          </label>
+        </div>
       </div>
     </div>
-    <div class="glass-radio-group">
-      <input
-        type="radio"
-        id="glass-home"
-        name="glass-radio"
-        value="home"
-        :checked="activeTab === 'home'"
-        @change="switchTab('home')"
-      />
-      <label for="glass-home">首页</label>
+    <div class="header-right">
+      <div class="glass-radio-group">
+        <input
+          type="radio"
+          id="glass-home"
+          name="glass-radio"
+          value="home"
+          :checked="activeTab === 'home'"
+          @change="switchTab('home')"
+        />
+        <label for="glass-home">首页</label>
 
-      <input
-        type="radio"
-        id="glass-contact"
-        name="glass-radio"
-        value="contact"
-        :checked="activeTab === 'contact'"
-        @change="switchTab('contact')"
-      />
-      <label for="glass-contact">联系我</label>
+        <input
+          type="radio"
+          id="glass-contact"
+          name="glass-radio"
+          value="contact"
+          :checked="activeTab === 'contact'"
+          @change="switchTab('contact')"
+        />
+        <label for="glass-contact">联系我</label>
 
-      <input
-        type="radio"
-        id="glass-announce"
-        name="glass-radio"
-        value="announce"
-        :checked="activeTab === 'announce'"
-        @change="switchTab('announce')"
-      />
-      <label for="glass-announce">公告</label>
+        <input
+          type="radio"
+          id="glass-announce"
+          name="glass-radio"
+          value="announce"
+          :checked="activeTab === 'announce'"
+          @change="switchTab('announce')"
+        />
+        <label for="glass-announce">公告</label>
 
-      <div class="glass-glider"></div>
+        <div class="glass-glider"></div>
+      </div>
+      <button class="settings-btn" @click="onSettings" aria-label="设置">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="3"/>
+          <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+        </svg>
+      </button>
     </div>
   </header>
 </template>
@@ -66,7 +76,7 @@ const props = defineProps({
   tab: { type: String, default: 'home' }
 })
 
-const emit = defineEmits(['navigate', 'contact', 'announce', 'search'])
+const emit = defineEmits(['navigate', 'contact', 'announce', 'search', 'settings'])
 
 const activeTab = ref(props.tab)
 
@@ -91,6 +101,10 @@ const labelChars = computed(() => '搜索导航站点...'.split(''))
 function onSearch() {
   emit('search', query.value)
 }
+
+function onSettings() {
+  emit('settings')
+}
 </script>
 
 <style scoped>
@@ -103,8 +117,37 @@ function onSearch() {
   flex: 1;
   display: flex;
   justify-content: center;
-  max-width: 280px;
+  max-width: 300px;
   margin: 0 auto;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* ===== 搜索框毛玻璃背景 ===== */
+.search-glass {
+  width: 100%;
+  padding: 6px 16px;
+  background: rgba(255, 255, 255, 0.38);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: 14px;
+  box-shadow:
+    inset 0 1px 3px rgba(255, 255, 255, 0.5),
+    0 2px 10px rgba(0, 0, 0, 0.04);
+  transition: all 0.3s ease;
+}
+
+.search-glass:focus-within {
+  background: rgba(255, 255, 255, 0.55);
+  border-color: rgba(247, 168, 184, 0.35);
+  box-shadow:
+    inset 0 1px 3px rgba(255, 255, 255, 0.6),
+    0 4px 18px rgba(247, 168, 184, 0.12);
 }
 
 /* ===== 搜索框波浪标签 ===== */
@@ -175,6 +218,22 @@ html.dark .form-control input.filled + label span {
   color: #b98eff;
 }
 
+html.dark .search-glass {
+  background: rgba(30, 33, 40, 0.45);
+  border-color: rgba(255, 255, 255, 0.08);
+  box-shadow:
+    inset 0 1px 3px rgba(255, 255, 255, 0.03),
+    0 2px 10px rgba(0, 0, 0, 0.15);
+}
+
+html.dark .search-glass:focus-within {
+  background: rgba(30, 33, 40, 0.6);
+  border-color: rgba(184, 142, 255, 0.2);
+  box-shadow:
+    inset 0 1px 3px rgba(255, 255, 255, 0.04),
+    0 4px 18px rgba(0, 0, 0, 0.2);
+}
+
 @media (max-width: 768px) {
   .header-center {
     max-width: 180px;
@@ -206,6 +265,65 @@ html.dark .form-control input.filled + label span {
   .form-control label span {
     font-size: 13px;
   }
+}
+
+/* ===== 设置按钮 ===== */
+.settings-btn {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.75);
+  background: rgba(255, 255, 255, 0.38);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  box-shadow:
+    inset 1px 1px 4px rgba(255, 255, 255, 0.7),
+    inset -1px -1px 4px rgba(0, 0, 0, 0.04),
+    0 2px 10px rgba(0, 0, 0, 0.04);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #6e6e73;
+  transition:
+    transform 0.3s cubic-bezier(0.22, 0.61, 0.36, 1),
+    box-shadow 0.3s ease,
+    color 0.3s ease,
+    background 0.3s ease;
+  flex-shrink: 0;
+}
+
+.settings-btn:hover {
+  color: #e8879e;
+  background: rgba(255, 255, 255, 0.55);
+  transform: translateY(-2px);
+  box-shadow:
+    inset 1px 1px 4px rgba(255, 255, 255, 0.8),
+    inset -1px -1px 4px rgba(0, 0, 0, 0.02),
+    0 6px 20px rgba(247, 168, 184, 0.18);
+}
+
+.settings-btn:active {
+  transform: translateY(0) scale(0.94);
+}
+
+html.dark .settings-btn {
+  background: rgba(30, 33, 40, 0.5);
+  border-color: rgba(255, 255, 255, 0.1);
+  color: #8899aa;
+  box-shadow:
+    inset 1px 1px 3px rgba(255, 255, 255, 0.05),
+    inset -1px -1px 4px rgba(0, 0, 0, 0.2),
+    0 2px 10px rgba(0, 0, 0, 0.15);
+}
+
+html.dark .settings-btn:hover {
+  color: #e8879e;
+  background: rgba(30, 33, 40, 0.65);
+  box-shadow:
+    inset 1px 1px 3px rgba(255, 255, 255, 0.06),
+    inset -1px -1px 4px rgba(0, 0, 0, 0.15),
+    0 6px 20px rgba(0, 0, 0, 0.25);
 }
 
 .glass-radio-group {
