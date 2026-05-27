@@ -5,6 +5,7 @@
       @navigate="onNavigate"
       @contact="onContact"
       @announce="onAnnounce"
+      @search="onSearch"
     />
 
     <!-- 首页：大标题 + 进入按钮 -->
@@ -35,7 +36,7 @@
         @click="sidebarOpen = false"
       ></div>
       <Sidebar :modelValue="activeIndex" @update:modelValue="onSidebarChange" :visible="sidebarOpen" />
-      <Content :activeIndex="activeIndex" />
+      <Content :activeIndex="activeIndex" :searchQuery="searchQuery" />
     </div>
 
     <!-- 联系我弹窗 -->
@@ -124,6 +125,12 @@ function copyEmail() {
     copied.value = true
     setTimeout(() => { copied.value = false }, 2000)
   })
+}
+
+const searchQuery = ref('')
+
+function onSearch(q) {
+  searchQuery.value = q
 }
 
 const showAnnounce = ref(false)

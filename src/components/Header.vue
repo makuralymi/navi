@@ -3,6 +3,25 @@
     <div class="header-left">
       <ThemeToggle />
     </div>
+    <div class="header-center">
+      <div class="form-control">
+        <input
+          type="text"
+          id="nav-search"
+          v-model="query"
+          @input="onSearch"
+          :class="{ filled: query.length > 0 }"
+          autocomplete="off"
+        />
+        <label for="nav-search">
+          <span
+            v-for="(char, i) in labelChars"
+            :key="i"
+            :style="{ transitionDelay: i * 50 + 'ms' }"
+          >{{ char }}</span>
+        </label>
+      </div>
+    </div>
     <div class="glass-radio-group">
       <input
         type="radio"
@@ -40,14 +59,14 @@
 </template>
 
 <script setup>
-import { ref, watch } from 'vue'
+import { ref, watch, computed } from 'vue'
 import ThemeToggle from './ThemeToggle.vue'
 
 const props = defineProps({
   tab: { type: String, default: 'home' }
 })
 
-const emit = defineEmits(['navigate', 'contact', 'announce'])
+const emit = defineEmits(['navigate', 'contact', 'announce', 'search'])
 
 const activeTab = ref(props.tab)
 
@@ -65,12 +84,128 @@ function switchTab(val) {
     emit('navigate', val)
   }
 }
+
+const query = ref('')
+const labelChars = computed(() => '搜索导航站点...'.split(''))
+
+function onSearch() {
+  emit('search', query.value)
+}
 </script>
 
 <style scoped>
 .header-left {
   display: flex;
   align-items: center;
+}
+
+.header-center {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  max-width: 280px;
+  margin: 0 auto;
+}
+
+/* ===== 搜索框波浪标签 ===== */
+.form-control {
+  position: relative;
+  width: 100%;
+}
+
+.form-control input {
+  background-color: transparent;
+  border: 0;
+  border-bottom: 2px solid rgba(180, 190, 205, 0.5);
+  display: block;
+  width: 100%;
+  padding: 12px 0 6px;
+  font-size: 16px;
+  color: var(--text-color);
+  transition: border-color 0.3s ease;
+}
+
+.form-control input:focus {
+  outline: 0;
+}
+
+.form-control input:focus,
+.form-control input.filled {
+  border-bottom-color: #7d4cd1;
+}
+
+.form-control label {
+  position: absolute;
+  top: 10px;
+  left: 0;
+  pointer-events: none;
+}
+
+.form-control label span {
+  display: inline-block;
+  font-size: 16px;
+  min-width: 5px;
+  color: #8b9eb0;
+  transition: 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.form-control input:focus + label span,
+.form-control input.filled + label span {
+  color: #7d4cd1;
+  transform: translateY(-24px);
+}
+
+/* ===== 暗色模式 ===== */
+html.dark .form-control input {
+  color: #c8d6e5;
+  border-bottom-color: rgba(255, 255, 255, 0.15);
+}
+
+html.dark .form-control input:focus,
+html.dark .form-control input.filled {
+  border-bottom-color: #b98eff;
+}
+
+html.dark .form-control label span {
+  color: #6b7d90;
+}
+
+html.dark .form-control input:focus + label span,
+html.dark .form-control input.filled + label span {
+  color: #b98eff;
+}
+
+@media (max-width: 768px) {
+  .header-center {
+    max-width: 180px;
+  }
+
+  .form-control input {
+    font-size: 14px;
+  }
+
+  .form-control label span {
+    font-size: 14px;
+  }
+
+  .form-control input:focus + label span,
+  .form-control input.filled + label span {
+    transform: translateY(-20px);
+  }
+}
+
+@media (max-width: 480px) {
+  .header-center {
+    max-width: 140px;
+  }
+
+  .form-control input {
+    font-size: 13px;
+  }
+
+  .form-control label span {
+    font-size: 13px;
+  }
 }
 
 .glass-radio-group {
