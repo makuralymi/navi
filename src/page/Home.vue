@@ -58,11 +58,32 @@
     <!-- 设置弹窗 -->
     <Teleport to="body">
       <div v-if="showSettings" class="modal-overlay" @click.self="closeSettings">
-        <div class="modal-card">
+        <div class="modal-card settings-modal">
           <button class="modal-close" @click="closeSettings">×</button>
           <div class="modal-icon">⚙️</div>
           <h2>设置</h2>
-          <p class="modal-desc">更多设置项即将上线...</p>
+          
+          <div class="settings-group">
+            <h3>个性化主题</h3>
+            <div class="setting-item">
+              <span class="setting-label">导航卡片配色</span>
+              <div class="theme-color-picker">
+                <button
+                  v-for="color in themeColors"
+                  :key="color.value"
+                  class="color-btn"
+                  :class="{ active: settings.navCardTheme === color.value }"
+                  :style="{ background: color.gradient }"
+                  :title="color.label"
+                  @click="settings.navCardTheme = color.value"
+                >
+                  <span v-if="settings.navCardTheme === color.value" class="check-icon">✓</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <p class="modal-desc" style="margin-top:20px;font-size:12px;">更多设置项即将上线，所有配置均自动保存在本地</p>
         </div>
       </div>
     </Teleport>
@@ -102,6 +123,15 @@ import Header from '../components/Header.vue'
 import Sidebar from '../components/Sidebar.vue'
 import Content from '../components/Content.vue'
 import { announcements } from '../data/announcements.js'
+import { settings } from '../data/settings.js'
+
+const themeColors = [
+  { value: 'pink', label: '樱花粉', gradient: 'linear-gradient(135deg, #f7a8b8, #ffb3c6)' },
+  { value: 'blue', label: '海天蓝', gradient: 'linear-gradient(135deg, #90e0ef, #caf0f8)' },
+  { value: 'purple', label: '罗兰紫', gradient: 'linear-gradient(135deg, #c5a3ff, #e0c3fc)' },
+  { value: 'green', label: '薄荷绿', gradient: 'linear-gradient(135deg, #80ed99, #b7e4c7)' },
+  { value: 'orange', label: '落日橘', gradient: 'linear-gradient(135deg, #ffb703, #ffd6a5)' }
+]
 
 const currentTab = ref('home')
 const currentView = ref('home')

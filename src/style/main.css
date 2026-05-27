@@ -11,6 +11,51 @@
   --sidebar-width: 240px;
   --border-radius: 12px;
   --content-padding: 40px;
+
+  /* default pink theme for nav-card */
+  --nav-primary: #f7a8b8;
+  --nav-secondary: #ffb3c6;
+  --nav-hover-shadow: rgba(247, 168, 184, 0.22);
+  --nav-hover-border: rgba(247, 168, 184, 0.4);
+  --nav-after-1: rgba(247, 168, 184, 0.12);
+  --nav-after-2: rgba(255, 182, 193, 0.06);
+}
+
+/* data-nav-theme */
+[data-nav-theme="blue"] {
+  --nav-primary: #90e0ef;
+  --nav-secondary: #caf0f8;
+  --nav-hover-shadow: rgba(144, 224, 239, 0.25);
+  --nav-hover-border: rgba(144, 224, 239, 0.5);
+  --nav-after-1: rgba(144, 224, 239, 0.15);
+  --nav-after-2: rgba(202, 240, 248, 0.08);
+}
+
+[data-nav-theme="purple"] {
+  --nav-primary: #c5a3ff;
+  --nav-secondary: #e0c3fc;
+  --nav-hover-shadow: rgba(197, 163, 255, 0.25);
+  --nav-hover-border: rgba(197, 163, 255, 0.5);
+  --nav-after-1: rgba(197, 163, 255, 0.15);
+  --nav-after-2: rgba(224, 195, 252, 0.08);
+}
+
+[data-nav-theme="green"] {
+  --nav-primary: #80ed99;
+  --nav-secondary: #b7e4c7;
+  --nav-hover-shadow: rgba(128, 237, 153, 0.25);
+  --nav-hover-border: rgba(128, 237, 153, 0.5);
+  --nav-after-1: rgba(128, 237, 153, 0.15);
+  --nav-after-2: rgba(183, 228, 199, 0.08);
+}
+
+[data-nav-theme="orange"] {
+  --nav-primary: #ffb703;
+  --nav-secondary: #ffd6a5;
+  --nav-hover-shadow: rgba(255, 183, 3, 0.25);
+  --nav-hover-border: rgba(255, 183, 3, 0.5);
+  --nav-after-1: rgba(255, 183, 3, 0.15);
+  --nav-after-2: rgba(255, 214, 165, 0.08);
 }
 
 @media (max-width: 768px) {

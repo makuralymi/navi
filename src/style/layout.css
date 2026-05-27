@@ -247,7 +247,7 @@
   z-index: -1;
   top: -16px;
   right: -16px;
-  background: linear-gradient(135deg, var(--primary-color), #ffb3c6);
+  background: linear-gradient(135deg, var(--nav-primary), var(--nav-secondary));
   height: 32px;
   width: 32px;
   border-radius: 32px;
@@ -264,8 +264,8 @@
   opacity: 0;
   background: linear-gradient(
     135deg,
-    rgba(247, 168, 184, 0.12) 0%,
-    rgba(255, 182, 193, 0.06) 50%,
+    var(--nav-after-1) 0%,
+    var(--nav-after-2) 50%,
     rgba(255, 255, 255, 0) 100%
   );
   transition: opacity 0.45s ease;
@@ -275,10 +275,10 @@
 
 .nav-card:hover {
   box-shadow:
-    0 12px 32px rgba(247, 168, 184, 0.22),
+    0 12px 32px var(--nav-hover-shadow),
     0 4px 12px rgba(0, 0, 0, 0.06);
   transform: translateY(-4px);
-  border-color: rgba(247, 168, 184, 0.4);
+  border-color: var(--nav-hover-border);
 }
 
 .nav-card:hover::before {
@@ -387,7 +387,7 @@
   overflow: hidden;
   top: 0;
   right: 0;
-  background: linear-gradient(135deg, var(--primary-color), #ffb3c6);
+  background: linear-gradient(135deg, var(--nav-primary), var(--nav-secondary));
   border-radius: 0 18px 0 34px;
   transition:
     width 0.35s cubic-bezier(0.22, 0.61, 0.36, 1),
@@ -521,4 +521,68 @@ html.dark .announce-tag {
 
 html.dark .announce-list::-webkit-scrollbar-thumb {
   background: rgba(255, 255, 255, 0.12);
+}
+/* Settings Modal Styles */
+.settings-group {
+  margin-top: 20px;
+  text-align: left;
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+  padding-top: 16px;
+}
+
+.settings-group h3 {
+  font-size: 16px;
+  margin-bottom: 12px;
+  color: var(--text-color);
+  font-weight: 600;
+}
+
+.setting-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.setting-label {
+  font-size: 14px;
+  color: var(--text-muted);
+}
+
+.theme-color-picker {
+  display: flex;
+  gap: 8px;
+}
+
+.color-btn {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s, box-shadow 0.2s;
+  position: relative;
+}
+
+.color-btn.active {
+  box-shadow: 0 0 0 2px var(--bg-color), 0 0 0 4px var(--primary-color);
+  transform: scale(1.1);
+}
+
+.color-btn:hover {
+  transform: scale(1.1);
+}
+
+.check-icon {
+  color: white;
+  font-size: 14px;
+  font-weight: bold;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+html.dark .settings-group {
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
