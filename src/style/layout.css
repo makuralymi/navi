@@ -416,7 +416,7 @@
 
 /* ===== Dark mode overrides ===== */
 html.dark .sidebar-logo {
-  color: #e8879e;
+  color: var(--nav-primary);
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
@@ -569,7 +569,7 @@ html.dark .announce-list::-webkit-scrollbar-thumb {
 }
 
 .color-btn.active {
-  box-shadow: 0 0 0 2px var(--bg-color), 0 0 0 4px var(--primary-color);
+  box-shadow: 0 0 0 2px var(--bg-color), 0 0 0 4px var(--nav-primary);
   transform: scale(1.1);
 }
 
@@ -610,9 +610,8 @@ html.dark .settings-group {
 }
 
 .bg-url-input:focus {
-  border-color: var(--primary-color);
+  border-color: var(--nav-primary);
 }
-
 .bg-apply-btn,
 .bg-clear-btn,
 .bg-file-btn {
@@ -621,7 +620,7 @@ html.dark .settings-group {
   border-radius: 6px;
   border: none;
   cursor: pointer;
-  background: var(--primary-color);
+  background: var(--nav-primary);
   color: white;
   transition: opacity 0.2s, transform 0.2s;
   text-align: center;
@@ -718,7 +717,7 @@ html.dark .bg-url-input {
   width: 16px;
   height: 16px;
   border-radius: 50%;
-  background: var(--primary-color);
+  background: var(--nav-primary);
   cursor: pointer;
   transition: transform 0.2s, box-shadow 0.2s;
 }
@@ -735,3 +734,13 @@ html.dark .bg-image-sliders {
 html.dark .range-slider {
   background: rgba(255, 255, 255, 0.15);
 }
+
+html.dark .range-slider::-webkit-slider-thumb:hover {
+  box-shadow: 0 2px 6px rgba(255, 255, 255, 0.1);
+}
+
+.custom-blobs-picker { display: flex; gap: 4px; padding: 2px; border-radius: 20px; border: 2px solid transparent; transition: all 0.2s; }
+.custom-blobs-picker.active { border-color: var(--nav-primary); background: rgba(0,0,0,0.05); }
+html.dark .custom-blobs-picker.active { background: rgba(255,255,255,0.05); }
+.mini-picker { width: 24px; height: 24px; border: none; }
+

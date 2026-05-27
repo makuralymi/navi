@@ -4,7 +4,8 @@ const SETTINGS_KEY = 'navi_app_settings'
 
 const defaultSettings = { // Default settings
   navCardTheme: 'pink', // can be pink, blue, purple, green, orange
-  bgTheme: 'default',   // default, ocean, forest, sunset
+  bgTheme: 'default',   // default, ocean, forest, sunset, custom
+  bgCustomColors: ['#ff8fa3', '#a2d2ff', '#b98eff'], // custom colors for 3 blobs
   bgImageUrl: '',       // custom background image URL or base64
   bgImageOpacity: 100,  // background image opacity 0-100
   bgImageBlur: 0        // background image blur radius in px
@@ -61,7 +62,16 @@ export function applyTheme(navTheme, bgTheme = settings.bgTheme) {
   }
 
   // Handle custom background theme color
-  if (bgTheme.startsWith('#')) {
+  if (bgTheme === 'custom') {
+    const [c1, c2, c3] = settings.bgCustomColors
+    document.documentElement.style.setProperty('--blob1-start', c1)
+    document.documentElement.style.setProperty('--blob1-end', `color-mix(in srgb, ${c1}, white 20%)`)
+    document.documentElement.style.setProperty('--blob2-start', c2)
+    document.documentElement.style.setProperty('--blob2-end', `color-mix(in srgb, ${c2}, white 20%)`)
+    document.documentElement.style.setProperty('--blob3-start', c3)
+    document.documentElement.style.setProperty('--blob3-end', `color-mix(in srgb, ${c3}, white 20%)`)
+  } else if (bgTheme.startsWith('#')) {
+    // Keep backward compatibility if a single hex was saved previously
     document.documentElement.style.setProperty('--blob1-start', navTheme.startsWith('#') ? navTheme : bgTheme)
     document.documentElement.style.setProperty('--blob1-end', bgTheme)
     document.documentElement.style.setProperty('--blob2-start', `color-mix(in srgb, ${bgTheme}, black 10%)`)

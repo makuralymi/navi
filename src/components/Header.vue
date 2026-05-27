@@ -144,10 +144,10 @@ function onSettings() {
 
 .search-glass:focus-within {
   background: rgba(255, 255, 255, 0.55);
-  border-color: rgba(247, 168, 184, 0.35);
+  border-color: color-mix(in srgb, var(--nav-primary), transparent 65%);
   box-shadow:
     inset 0 1px 3px rgba(255, 255, 255, 0.6),
-    0 4px 18px rgba(247, 168, 184, 0.12);
+    0 4px 18px color-mix(in srgb, var(--nav-primary), transparent 88%);
 }
 
 /* ===== 搜索框波浪标签 ===== */
@@ -294,13 +294,13 @@ html.dark .search-glass:focus-within {
 }
 
 .settings-btn:hover {
-  color: #e8879e;
+  color: var(--nav-primary);
   background: rgba(255, 255, 255, 0.55);
   transform: translateY(-2px);
   box-shadow:
     inset 1px 1px 4px rgba(255, 255, 255, 0.8),
     inset -1px -1px 4px rgba(0, 0, 0, 0.02),
-    0 6px 20px rgba(247, 168, 184, 0.18);
+    0 6px 20px color-mix(in srgb, var(--nav-primary), transparent 82%);
 }
 
 .settings-btn:active {
@@ -318,7 +318,7 @@ html.dark .settings-btn {
 }
 
 html.dark .settings-btn:hover {
-  color: #e8879e;
+  color: var(--nav-primary);
   background: rgba(30, 33, 40, 0.65);
   box-shadow:
     inset 1px 1px 3px rgba(255, 255, 255, 0.06),

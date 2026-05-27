@@ -4,7 +4,7 @@
   --hover-bg: #fff0f3;
   --text-color: #2c3e50;
   --text-muted: #8b9eb0;
-  --primary-color: #f7a8b8;
+  --primary-color: var(--nav-primary);
   --card-bg: rgba(255, 255, 255, 0.55);
   --card-border: rgba(255, 255, 255, 0.85);
   --header-height: 70px;
@@ -72,7 +72,7 @@ html.dark {
   --hover-bg: #2d2030;
   --text-color: #c8d6e5;
   --text-muted: #6b7d90;
-  --primary-color: #e8879e;
+  --primary-color: color-mix(in srgb, var(--nav-primary), black 10%);
   --card-bg: rgba(30, 33, 40, 0.7);
   --card-border: rgba(255, 255, 255, 0.08);
 }
@@ -270,17 +270,7 @@ html.dark .blob {
   opacity: 0.35;
 }
 
-html.dark .blob-1 {
-  background: radial-gradient(circle, #8b4a5a, #5a3040);
-}
-
-html.dark .blob-2 {
-  background: radial-gradient(circle, #3a5a8c, #2a4060);
-}
-
-html.dark .blob-3 {
-  background: radial-gradient(circle, #5a3a7a, #352550);
-}
+/* Dark blob colors driven by CSS variables — each bg theme sets its own variables */
 
 /* Background blob themes */
 :root {

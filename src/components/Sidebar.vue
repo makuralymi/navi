@@ -40,8 +40,8 @@ const menuItems = siteData
 
 <style scoped>
 .radio-container {
-  --main-color: var(--primary-color);
-  --main-color-opacity: rgba(247, 168, 184, 0.2); 
+  --main-color: var(--nav-primary);
+  --main-color-opacity: color-mix(in srgb, var(--nav-primary), transparent 80%);
 
   display: flex;
   flex-direction: column;
@@ -127,7 +127,7 @@ const menuItems = siteData
 }
 
 .radio-container input:checked + label {
-  color: var(--primary-color);
+  color: var(--nav-primary);
   font-weight: bold;
 }
 </style>

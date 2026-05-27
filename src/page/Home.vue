@@ -13,7 +13,7 @@
     <section v-if="currentView === 'home'" class="landing">
       <div class="landing-content">
         <h1 class="landing-title">凉言\导航</h1>
-        <p class="landing-sub">一个安静而有温度的导航站点</p>
+        <p class="landing-sub">一个安静而有温度的导航站点<br>右上角设置自定义你穿的主题</p>
         <button class="landing-btn" @click="onNavigate('announce')">
           <span>进入导航</span>
           <span class="landing-arrow">→</span>
@@ -100,8 +100,16 @@
                 >
                   <span v-if="settings.bgTheme === bg.value && !settings.bgImageUrl" class="check-icon">✓</span>
                 </button>
-                <div class="color-picker-wrapper color-btn" :class="{ active: settings.bgTheme.startsWith('#') }" title="自定义颜色" :style="{ background: settings.bgTheme.startsWith('#') ? settings.bgTheme : 'conic-gradient(red, yellow, lime, aqua, blue, magenta, red)' }">
-                  <input type="color" class="hidden-color-input" :value="settings.bgTheme.startsWith('#') ? settings.bgTheme : '#80ed99'" @input="settings.bgTheme = $event.target.value; settings.bgImageUrl = ''" />
+                <div class="custom-blobs-picker" :class="{ active: settings.bgTheme === 'custom' || settings.bgTheme.startsWith('#') }" title="自定义三个光球的颜色">
+                  <div class="color-picker-wrapper color-btn mini-picker" :style="{ background: settings.bgCustomColors[0] }">
+                    <input type="color" class="hidden-color-input" v-model="settings.bgCustomColors[0]" @input="activateCustomBg" />
+                  </div>
+                  <div class="color-picker-wrapper color-btn mini-picker" :style="{ background: settings.bgCustomColors[1] }">
+                    <input type="color" class="hidden-color-input" v-model="settings.bgCustomColors[1]" @input="activateCustomBg" />
+                  </div>
+                  <div class="color-picker-wrapper color-btn mini-picker" :style="{ background: settings.bgCustomColors[2] }">
+                    <input type="color" class="hidden-color-input" v-model="settings.bgCustomColors[2]" @input="activateCustomBg" />
+                  </div>
                 </div>
               </div>
             </div>
@@ -207,6 +215,11 @@ const bgThemes = [
 ]
 
 const bgImageUrlInput = ref(settings.bgImageUrl)
+
+function activateCustomBg() {
+  settings.bgTheme = 'custom'
+  settings.bgImageUrl = ''
+}
 
 function applyBgImage() {
   if (bgImageUrlInput.value.trim()) {
@@ -352,7 +365,7 @@ function closeAnnounce() {
   font-size: clamp(3rem, 8vw, 6rem);
   font-weight: 800;
   letter-spacing: 4px;
-  background: linear-gradient(135deg, #f7a8b8, #7d4cd1, #51475a);
+  background: linear-gradient(135deg, var(--nav-primary), #7d4cd1, #51475a);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -501,25 +514,25 @@ function closeAnnounce() {
   display: block;
   font-size: 1.15rem;
   font-weight: 600;
-  color: #f7a8b8;
+  color: var(--nav-primary);
   text-decoration: none;
   margin-bottom: 24px;
   padding: 12px 20px;
-  background: rgba(247, 168, 184, 0.08);
+  background: color-mix(in srgb, var(--nav-primary), transparent 92%);
   border-radius: 12px;
   transition: all 0.2s ease;
   word-break: break-all;
 }
 
 .modal-email:hover {
-  background: rgba(247, 168, 184, 0.15);
-  color: #e8879e;
+  background: color-mix(in srgb, var(--nav-primary), transparent 85%);
+  color: var(--nav-primary);
 }
 
 .modal-copy {
-  border: 1px solid rgba(247, 168, 184, 0.3);
+  border: 1px solid color-mix(in srgb, var(--nav-primary), transparent 70%);
   background: transparent;
-  color: #f7a8b8;
+  color: var(--nav-primary);
   padding: 10px 32px;
   border-radius: 50px;
   font-size: 0.9rem;
@@ -529,7 +542,7 @@ function closeAnnounce() {
 }
 
 .modal-copy:hover {
-  background: #f7a8b8;
+  background: var(--nav-primary);
   color: #fff;
 }
 
@@ -631,6 +644,85 @@ function closeAnnounce() {
   color: #7d4cd1;
   font-weight: 600;
   letter-spacing: 0.3px;
+}
+
+/* ===== Dark mode overrides for modals ===== */
+html.dark .modal-card {
+  background: rgba(30, 33, 40, 0.94);
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+html.dark .modal-card h2 {
+  color: #c8d6e5;
+}
+
+html.dark .modal-desc {
+  color: #6b7d90;
+}
+
+html.dark .modal-close {
+  background: rgba(255, 255, 255, 0.06);
+  color: #8899aa;
+}
+
+html.dark .modal-close:hover {
+  background: rgba(255, 255, 255, 0.12);
+  color: #c8d6e5;
+}
+
+html.dark .modal-email {
+  color: var(--nav-primary);
+  background: color-mix(in srgb, var(--nav-primary), transparent 92%);
+}
+
+html.dark .modal-email:hover {
+  background: color-mix(in srgb, var(--nav-primary), transparent 85%);
+  color: var(--nav-primary);
+}
+
+html.dark .modal-copy {
+  color: var(--nav-primary);
+  border-color: color-mix(in srgb, var(--nav-primary), transparent 70%);
+}
+
+html.dark .modal-copy:hover {
+  background: var(--nav-primary);
+  color: #1a1d23;
+}
+
+html.dark .modal-toast {
+  color: #7bc67e;
+}
+
+html.dark .announce-title {
+  color: #c8d6e5;
+}
+
+html.dark .announce-content {
+  color: #6b7d90;
+}
+
+html.dark .announce-date {
+  color: #5a6b7a;
+}
+
+html.dark .announce-item {
+  background: rgba(255, 255, 255, 0.03);
+  border-color: rgba(255, 255, 255, 0.06);
+}
+
+html.dark .announce-item:hover {
+  background: rgba(247, 168, 184, 0.06);
+  border-color: rgba(247, 168, 184, 0.15);
+}
+
+html.dark .announce-tag {
+  background: linear-gradient(135deg, rgba(247, 168, 184, 0.15), rgba(186, 230, 253, 0.15));
+  color: #b98eff;
+}
+
+html.dark .announce-list::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.12);
 }
 
 @media (max-width: 768px) {
