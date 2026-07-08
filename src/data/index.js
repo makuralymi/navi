@@ -4,6 +4,7 @@ export const siteData = [
     icon: '🌸',
     sites: [
       { title: '哔哩哔哩 凉言Makura', description: 'B站主页，欢迎关注。', url: 'https://space.bilibili.com/125281372', icon: 'wf_B站.svg' },
+      {title:'视频作品集', description:'我的视频作品集，包含一些个人创作和剪辑作品。', url:'https://demo.makuraly.xyz', icon:'🎬'},
       { title: "GitHub", description: '我的GitHub主页，欢迎star和follow。', url: 'https://github.com/makuralymi', icon: 'GitHub.svg' },
       { title: "Blog", description: '我的个人博客，记录我的技术探索和生活点滴。当前没建好！', url: 'https://blog.makuraly.xyz', icon: '📚' },
       { title: '飞行雪绒主站', description: '鸣潮同人飞行雪绒网站。', url: 'https://fleet-snowfluff.makuraly.xyz', icon: 'ams.webp' },
