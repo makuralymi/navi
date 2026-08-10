@@ -64,6 +64,18 @@ export const siteData = [
   },
 
   {
+    name: 'AI资源参考',
+    icon: '🧩',
+    sites: [
+      { title: 'Motion Sites', description: '选一个设计，然后 copy prompt。', url: 'https://motionsites.ai', icon: 'https://motionsites.ai/favicon.ico' },
+      { title: 'React Bits', description: '选一个 react component，然后看 code。', url: 'https://reactbits.dev', icon: 'https://reactbits.dev/favicon.ico' },
+      { title: 'uiverse.io', description: '选一个 ui 设计，然后看 code。', url: 'https://uiverse.io', icon: 'https://uiverse.io/favicon.ico' },
+      { title: 'Anime.js', description: '用 js 做出动画效果。', url: 'https://animejs.com', icon: 'https://animejs.com/assets/images/favicon.png' },
+      { title: 'Aceternity UI', description: '选一个 ui 设计，然后看 code。', url: 'https://ui.aceternity.com', icon: 'https://ui.aceternity.com/favicon.ico' }
+    ]
+  },
+
+  {
     name: '云服务器',
     icon: '☁️',
     sites: [
