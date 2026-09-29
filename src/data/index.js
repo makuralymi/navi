@@ -13,7 +13,10 @@ export const siteData = [
       { title: "webpiano", description: '一个基于Web的特效钢琴钢琴应用，带瀑布流。', url: 'https://webpiano.makuraly.xyz', icon: '🎹' },
       { title: 'makuraly.xyz', description: '我的个人域名，正在建设中。', url: 'https://makuraly.xyz', icon: '🌐' },
       { title: "从夯到拉排行模拟器", description: "一个模拟从夯到拉的排行的工具，便于直接录制。", url: "https://chdl.makuraly.xyz", icon: '📊' },
-      { title: "Fxxk-AIGC检测", description: "一个娱乐向的AIGC检测工具，不具有参考价值，仅作为娱乐。", url: "https://aigc.makuraly.xyz", icon: '🤖' }
+      { title: "Fxxk-AIGC检测", description: "一个娱乐向的AIGC检测工具，不具有参考价值，仅作为娱乐。", url: "https://aigc.makuraly.xyz", icon: '🤖' },
+      { title: "生诞绘卷", description: "查询和你同一天生日的角色的绘卷。", url: "https://birth.makuraly.xyz", icon: 'birth.png' },
+      { title: "[Gal]我被AI包围了", description: "一个Galgame，讲述了一个被AI包围的故事。", url: "https://gal.makuraly.xyz", icon: 'AI-gal.png'}
+
     ]
   },
 
